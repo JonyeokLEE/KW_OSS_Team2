@@ -39,3 +39,6 @@
 - HTML
 - JavaScript
 - Python
+
+## 프로젝트 설명 이미지
+![project image](/image/주제설명.jpg
