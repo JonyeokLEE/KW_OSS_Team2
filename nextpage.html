@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다음 페이지</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            padding-bottom: 5px;
+        }
+
+        .schedule-container {
+            border: 2px solid #333;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task-item strong {
+            font-size: 1.2em;
+        }
+
+        .task-item button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="schedule-container">
+            <h2>MON</h2>
+            <!-- 월요일 일정 내용 -->
+            <p>월요일 일정 내용이 여기에 들어갑니다.</p>
+            <!-- 업무항목 추가 버튼 -->
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">업무항목 추가</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </section>
+
+
+
+    <!-- 모달 창 -->
+    <div class="modal" id="addTaskModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 모달 헤더 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">업무항목 추가</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 모달 본문 -->
+                <div class="modal-body">
+                    <form id="addTaskForm">
+                        <div class="form-group">
+                            <label for="subject">과목명:</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studyTime">목표 공부 시간:</label>
+                            <input type="text" class="form-control" id="studyTime" required>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="submitForm()">추가</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function submitForm() {
+            // 사용자로부터 과목명과 목표 공부 시간 입력 받기
+            var subject = document.getElementById('subject').value;
+            var studyTime = document.getElementById('studyTime').value;
+
+            // 업무항목 목록에 새로운 항목 추가
+            var taskList = document.getElementById('taskList');
+            var taskItem = document.createElement('li');
+            taskItem.className = 'task-item';
+            taskItem.innerHTML = `
+                <strong>${subject}</strong> - 목표 공부 시간: ${studyTime} 시간
+                <button class="btn btn-danger" onclick="removeTask(this)">삭제</button>`;
+            taskList.appendChild(taskItem);
+
+            // 모달 창 닫기
+            $('#addTaskModal').modal('hide');
+        }
+
+        function removeTask(button) {
+            // 부모 엘리먼트인 task-item을 찾아서 삭제
+            var taskItem = button.parentElement;
+            taskItem.remove();
+        }
+    </script>
+</body>
+</html>
