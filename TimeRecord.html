@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Time Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #timer {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        #startBtn,
+        #stopBtn,
+        #resetBtn {
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        #startBtn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #stopBtn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #resetBtn {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Study Time Tracker</h1>
+
+    <div id="timer">00:00:00</div>
+    <div id="buttons">
+        <button id="startBtn" onclick="startTimer()">Start Study</button>
+        <button id="stopBtn" onclick="stopTimer()">Stop Study</button>
+        <button id="resetBtn" onclick="resetTimer()">Reset Timer</button>
+    </div>
+
+    <script>
+        var timerInterval;
+        var seconds = 0;
+        var minutes = 0;
+        var hours = 0;
+
+        function startTimer() {
+            timerInterval = setInterval(updateTimer, 1000);
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+            document.getElementById('resetBtn').disabled = false;
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timer').innerText = '00:00:00';
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+            document.getElementById('resetBtn').disabled = true;
+        }
+
+        function updateTimer() {
+            seconds++;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+
+            var formattedTime = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+            document.getElementById('timer').innerText = formattedTime;
+        }
+
+        function pad(value) {
+            return value < 10 ? '0' + value : value;
+        }
+    </script>
+</body>
+
+</html>

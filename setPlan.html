@@ -54,10 +54,31 @@
             border-radius: 3px;
             cursor: pointer;
         }
+
+        nav {
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link" href="login.html">Go to Login Page</a>
+                    <a class="nav-link" href="main.html">Go to Main Page</a>
+                </div>
+            </div>
+        </div>
+    </nav>
     <section>
         <div class="schedule-container">
             <h2>DAY 1</h2>
@@ -146,34 +167,62 @@
                             <label for="plannedTime">목표 공부 시간:</label>
                             <input type="text" class="form-control" id="plannedTime" required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="plannedTime">목표 공부 분:</label>
+                            <input type="text" class="form-control" id="plannedm" required>
+                        </div>
                         <button type="button" class="btn btn-primary" onclick="submitForm()">추가</button>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script>
+        $(document).ready(function () {
+            $('#addTaskModal').on('show.bs.modal', function () {
+                // Clear form fields when the modal is displayed
+                document.getElementById('addTaskForm').reset();
+                taskToEdit = null;
+            });
+
+        });
         function submitForm() {
             // 사용자로부터 과목명과 목표 공부 시간 입력 받기
             var subject = document.getElementById('subject').value;
             var plannedTime = document.getElementById('plannedTime').value;
+            var plannedm = document.getElementById('plannedm').value;
+            // 입력된 값이 숫자인지 확인
+            if (isNaN(plannedTime)) {
+                alert('목표 공부 시간은 숫자로 입력해주세요.');
+                return;
+            }
 
             // 업무항목 목록에 새로운 항목 추가
             var taskList = document.getElementById('taskList');
             var taskItem = document.createElement('li');
             taskItem.className = 'task-item';
             taskItem.innerHTML = `
-                <strong>${subject}</strong> - 목표 공부 시간: ${plannedTime} 시간
+                <strong>${subject}</strong> - Planned Time: ${plannedTime} hours ${plannedm} minutes
+                <button class="btn btn-fix" onclick="fixForm(this)">수정</button>
                 <button class="btn btn-danger" onclick="removeTask(this)">삭제</button>`;
             taskList.appendChild(taskItem);
 
             // 모달 창 닫기
             $('#addTaskModal').modal('hide');
+        }
+
+        function fixForm(button) {
+        }
+
+        function updateTask() {
         }
 
         function removeTask(button) {
