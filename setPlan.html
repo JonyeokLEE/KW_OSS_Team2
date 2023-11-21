@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>다음 페이지</title>
+    <title>Set Plan</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         body {
@@ -55,14 +56,67 @@
         }
     </style>
 </head>
+
 <body>
     <section>
         <div class="schedule-container">
-            <h2>MON</h2>
-            <!-- 월요일 일정 내용 -->
-            <p>월요일 일정 내용이 여기에 들어갑니다.</p>
+            <h2>DAY 1</h2>
+            <p>Set the Plan of Day 1</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 2</h2>
+            <p>Set the Plan of Day 2</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 3</h2>
+            <p>Set the Plan of Day 3</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 4</h2>
+            <p>Set the Plan of Day 4</p>
             <!-- 업무항목 추가 버튼 -->
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">업무항목 추가</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 5</h2>
+            <p>Set the Plan of Day 5</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 6</h2>
+            <p>Set the Plan of Day 6</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 7</h2>
+            <p>Set the Plan of Day 7</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
             <!-- 업무항목 목록 -->
             <ul id="taskList" class="task-list"></ul>
         </div>
@@ -89,8 +143,8 @@
                             <input type="text" class="form-control" id="subject" required>
                         </div>
                         <div class="form-group">
-                            <label for="studyTime">목표 공부 시간:</label>
-                            <input type="text" class="form-control" id="studyTime" required>
+                            <label for="plannedTime">목표 공부 시간:</label>
+                            <input type="text" class="form-control" id="plannedTime" required>
                         </div>
                         <button type="button" class="btn btn-primary" onclick="submitForm()">추가</button>
                     </form>
@@ -107,14 +161,14 @@
         function submitForm() {
             // 사용자로부터 과목명과 목표 공부 시간 입력 받기
             var subject = document.getElementById('subject').value;
-            var studyTime = document.getElementById('studyTime').value;
+            var plannedTime = document.getElementById('plannedTime').value;
 
             // 업무항목 목록에 새로운 항목 추가
             var taskList = document.getElementById('taskList');
             var taskItem = document.createElement('li');
             taskItem.className = 'task-item';
             taskItem.innerHTML = `
-                <strong>${subject}</strong> - 목표 공부 시간: ${studyTime} 시간
+                <strong>${subject}</strong> - 목표 공부 시간: ${plannedTime} 시간
                 <button class="btn btn-danger" onclick="removeTask(this)">삭제</button>`;
             taskList.appendChild(taskItem);
 
@@ -129,4 +183,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>학습 관리 프로그램</title>
 </head>
+
 <body>
     <h1>학습 관리 프로그램</h1>
-    
+
     <label for="userId">사용자 ID:</label>
     <input type="text" id="userId" name="userId">
-    
-    <button onclick="goToNextPage()">다음</button>
+
+    <button onclick="goToNextPage()">Log-In</button>
 
     <script>
         function goToNextPage() {
@@ -21,10 +23,10 @@
             if (userId.trim() === "") {
                 alert("아이디를 입력하세요.");
             } else {
-                // 다음 페이지로 이동
-                window.location.href = 'nextPage.html?userId=' + userId;
+                window.location.href = 'setPlan.html?userId=' + userId;
             }
         }
     </script>
 </body>
+
 </html>
