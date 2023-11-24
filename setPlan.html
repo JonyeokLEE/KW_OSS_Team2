@@ -56,7 +56,7 @@
         }
 
         nav {
-            background-color: #f8f9fa;
+            background-color: black;
             margin-bottom: 20px;
         }
     </style>
@@ -93,7 +93,9 @@
             <p>Set the Plan of Day 2</p>
             <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
             <!-- 업무항목 목록 -->
-            <ul id="taskList" class="task-list"></ul>
+            <ul id="taskList" class="task-list">
+
+            </ul>
         </div>
     </section>
     <section>
@@ -186,11 +188,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script>
+        var time = 0;
         $(document).ready(function () {
             $('#addTaskModal').on('show.bs.modal', function () {
                 // Clear form fields when the modal is displayed
                 document.getElementById('addTaskForm').reset();
-                taskToEdit = null;
+                //taskToEdit
             });
 
         });
@@ -216,13 +219,56 @@
             taskList.appendChild(taskItem);
 
             // 모달 창 닫기
+
             $('#addTaskModal').modal('hide');
+
         }
 
         function fixForm(button) {
+            // Set taskToEdit to the parent task-item element of the button clicked
+            taskToEdit = button.parentElement;
+            // Extract the existing values from the task item
+            let existingSubject = taskToEdit.querySelector('strong').innerText;
+            let existingTime = taskToEdit.innerText.split('-')[1].trim().split(' ')[2];
+            let existingMinutes = taskToEdit.innerText.split('-')[1].trim().split(' ')[4];
+
+            // Pre-fill the modal fields with existing data
+            document.getElementById('subject').value = existingSubject;
+            document.getElementById('plannedTime').value = existingTime;
+            document.getElementById('plannedm').value = existingMinutes;
+
+            // Change the modal submit button behavior to update the task instead of adding a new one
+            document.querySelector('.modal-content button.btn-primary').setAttribute('onclick', 'updateTask()');
+            // Change modal title to indicate editing
+            document.querySelector('.modal-title').innerText = '업무항목 수정';
+
+            // Show the modal
+            $('#addTaskModal').modal('show');
         }
 
         function updateTask() {
+            // Get the updated values from the modal
+            var subject = document.getElementById('subject').value;
+            var plannedTime = document.getElementById('plannedTime').value;
+            var plannedm = document.getElementById('plannedm').value;
+
+            // Check if the entered time is a number
+            if (isNaN(plannedTime)) {
+                alert('목표 공부 시간은 숫자로 입력해주세요.');
+                return;
+            }
+
+            // Update the task item with new data
+            taskToEdit.querySelector('strong').innerText = subject;
+            taskToEdit.innerHTML = `
+            <strong>${subject}</strong> - Planned Time: ${plannedTime} hours ${plannedm} minutes
+            <button class="btn btn-fix" onclick="fixForm(this)">수정</button>
+            <button class="btn btn-danger" onclick="removeTask(this)">삭제</button>`;
+
+            // Hide the modal
+            $('#addTaskModal').modal('hide');
+            // Reset the taskToEdit variable
+            taskToEdit = null;
         }
 
         function removeTask(button) {
