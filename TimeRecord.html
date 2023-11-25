@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Time Tracker</title>
+    <link rel="stylesheet" href="Timerecord.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,16 +15,14 @@
             height: 100vh;
             margin: 0;
             flex-direction: column;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
+            min-height: 100vh;
+            background-image: linear-gradient(120deg, #380036, #0CBABA); 
         }
 
         #timer {
             font-size: 2em;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         #buttons {
@@ -34,6 +33,8 @@
         #startBtn,
         #stopBtn,
         #resetBtn {
+            border: none;
+            border-radius: 10%;
             padding: 10px;
             font-size: 1em;
             cursor: pointer;
@@ -41,31 +42,39 @@
         }
 
         #startBtn {
-            background-color: #28a745;
+            background-color: #abebba;
             color: white;
         }
 
         #stopBtn {
-            background-color: #dc3545;
+            background-color: #e798a0;
             color: white;
         }
 
         #resetBtn {
-            background-color: #007bff;
+            background-color: #99bbdf;
             color: white;
         }
     </style>
 </head>
 
 <body>
-    <h1>Study Time Tracker</h1>
 
-    <div id="timer">00:00:00</div>
-    <div id="buttons">
-        <button id="startBtn" onclick="startTimer()">Start Study</button>
-        <button id="stopBtn" onclick="stopTimer()">Stop Study</button>
-        <button id="resetBtn" onclick="resetTimer()">Reset Timer</button>
-    </div>
+    <form class="Time-record-form">
+        <div class="text1">
+            Study Time Tracker
+        </div>
+
+        <div id="timer">00:00:00</div>
+        <div id="buttons">
+            <button id="startBtn" onclick="startTimer()">Start Study</button>
+            <button id="stopBtn" onclick="stopTimer()">Stop Study</button>
+            <button id="resetBtn" onclick="resetTimer()">Reset Timer</button>
+        </div>
+
+        <div class="text2">
+            Check your study time!
+        </div>
 
     <script>
         var timerInterval;
@@ -116,6 +125,7 @@
             return value < 10 ? '0' + value : value;
         }
     </script>
+    </form>
 </body>
 
 </html>
