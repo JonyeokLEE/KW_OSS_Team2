@@ -11,5 +11,8 @@
     "url": "KW_OSS_Team2"
   },
   "author": "LJH",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "inko": "^1.1.1"
+  }
 }
