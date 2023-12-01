@@ -21,6 +21,18 @@
             margin-bottom: 20px;
         }
 
+        #dateDropdown {
+            margin-bottom: 20px;
+        }
+
+        #subjectDropdown {
+            margin-bottom: 20px;
+        }
+
+        #taskList {
+            margin-bottom: 20px;
+        }
+
         #timer {
             font-size: 2em;
             margin-bottom: 20px;
@@ -33,7 +45,8 @@
 
         #startBtn,
         #stopBtn,
-        #resetBtn {
+        #resetBtn,
+        #saveBtn {
             padding: 10px;
             font-size: 1em;
             cursor: pointer;
@@ -54,36 +67,107 @@
             background-color: #007bff;
             color: white;
         }
+
+        #saveBtn {
+            background-color: #ffc107;
+            color: black;
+        }
     </style>
 </head>
 
 <body>
     <h1>Study Time Tracker</h1>
 
+    <!-- Add date dropdown menu -->
+    <select id="dateDropdown" onchange="loadTasks()">
+        <option value="day1" selected>Day 1</option>
+        <option value="day2">Day 2</option>
+        <option value="day3">Day 3</option>
+        <option value="day4">Day 4</option>
+        <option value="day5">Day 5</option>
+        <option value="day6">Day 6</option>
+        <option value="day7">Day 7</option>
+    </select>
+
+    <!-- Display tasks for the selected day -->
+    <ul id="taskList"></ul>
+
+    <!-- Subject dropdown for the selected day -->
+    <select id="subjectDropdown"></select>
+
     <div id="timer">00:00:00</div>
     <div id="buttons">
         <button id="startBtn" onclick="startTimer()">Start Study</button>
         <button id="stopBtn" onclick="stopTimer()">Stop Study</button>
         <button id="resetBtn" onclick="resetTimer()">Reset Timer</button>
+        <button id="saveBtn" onclick="saveElapsedTime()">Save</button>
     </div>
 
     <script>
+        var tasksObject;  // tasksObject를 전역 변수로 선언
+        var selectedDay;
+        var selectedSubject;
         var timerInterval;
         var seconds = 0;
         var minutes = 0;
         var hours = 0;
 
+        // 페이지 로드 시 초기화
+        window.onload = function () {
+            loadTasks();
+        };
+
+        function loadTasks() {
+            selectedDay = document.getElementById('dateDropdown').value;
+            tasksObject = JSON.parse(localStorage.getItem("tasks"));
+
+            // Display tasks for the selected day
+            var taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+
+            tasksObject[selectedDay].forEach(function (task) {
+                var listItem = document.createElement('li');
+                listItem.className = 'task-item';
+                listItem.innerText = task.subject;
+                taskList.appendChild(listItem);
+            });
+
+            // Update the subject dropdown for the selected day
+            updateSubjectDropdown(selectedDay);
+        }
+
+        function updateSubjectDropdown(selectedDay) {
+            var subjectDropdown = document.getElementById('subjectDropdown');
+            subjectDropdown.innerHTML = '';
+
+            tasksObject[selectedDay].forEach(function (task) {
+                var option = document.createElement('option');
+                option.value = task.subject;
+                option.text = task.subject;
+                subjectDropdown.add(option);
+            });
+        }
+
         function startTimer() {
+            selectedSubject = document.getElementById('subjectDropdown').value;
+            if (!selectedSubject) {
+                alert('Please select a subject before starting the timer.');
+                return;
+            }
+
+            loadTasks();  // Load tasks when the timer starts to ensure the selected day is correct
             timerInterval = setInterval(updateTimer, 1000);
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = false;
             document.getElementById('resetBtn').disabled = false;
+            document.getElementById('saveBtn').disabled = true;  // Disable the Save button while timer is running
         }
 
         function stopTimer() {
             clearInterval(timerInterval);
             document.getElementById('startBtn').disabled = false;
             document.getElementById('stopBtn').disabled = true;
+            document.getElementById('saveBtn').disabled = false;  // Enable the Save button after stopping the timer
         }
 
         function resetTimer() {
@@ -95,6 +179,7 @@
             document.getElementById('startBtn').disabled = false;
             document.getElementById('stopBtn').disabled = true;
             document.getElementById('resetBtn').disabled = true;
+            document.getElementById('saveBtn').disabled = false;  // Enable the Save button after resetting the timer
         }
 
         function updateTimer() {
@@ -114,6 +199,26 @@
 
         function pad(value) {
             return value < 10 ? '0' + value : value;
+        }
+
+        function saveElapsedTime() {
+            if (!selectedSubject || !selectedDay) {
+                alert('Please select a subject and day before saving.');
+                return;
+            }
+
+            var elapsedTime = hours * 60 + minutes;  // Convert hours to minutes and add to the existing minutes
+            // Find the selected subject in tasksObject and update the elapsed time
+            var taskIndex = tasksObject[selectedDay].findIndex(function (task) {
+                return task.subject === selectedSubject;
+            });
+
+            tasksObject[selectedDay][taskIndex].elapsedTime = elapsedTime;
+
+            // Save the updated tasksObject to localStorage
+            localStorage.setItem("tasks", JSON.stringify(tasksObject));
+
+            alert('Elapsed time saved successfully!');
         }
     </script>
 </body>

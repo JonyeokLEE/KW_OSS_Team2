@@ -56,10 +56,15 @@
         }
 
         nav {
-            background-color: #f8f9fa;
+            background-color: black;
             margin-bottom: 20px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="main.js"></script>
 </head>
 
 <body>
@@ -75,75 +80,86 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-link" href="login.html">Go to Login Page</a>
                     <a class="nav-link" href="main.html">Go to Main Page</a>
+                    <a class="nav-link" href="TimeRecord.html">Go to TimeRecord Page</a>
+                    
                 </div>
             </div>
+            <!-- 저장 버튼 -->
+            <button class="btn btn-primary" onclick="saveTasks()">저장</button>
         </div>
     </nav>
     <section>
         <div class="schedule-container">
             <h2>DAY 1</h2>
             <p>Set the Plan of Day 1</p>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
-            <ul id="taskList" class="task-list"></ul>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(1)">+</button>
+            <ul id="taskList1" class="task-list"></ul>
         </div>
     </section>
     <section>
         <div class="schedule-container">
             <h2>DAY 2</h2>
             <p>Set the Plan of Day 2</p>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(2)">+</button>
             <!-- 업무항목 목록 -->
-            <ul id="taskList" class="task-list"></ul>
+            <ul id="taskList2" class="task-list">
+
+            </ul>
         </div>
     </section>
     <section>
         <div class="schedule-container">
             <h2>DAY 3</h2>
             <p>Set the Plan of Day 3</p>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
-            <!-- 업무항목 목록 -->
-            <ul id="taskList" class="task-list"></ul>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(3)">+</button>
+            <ul id="taskList3" class="task-list"></ul>
         </div>
     </section>
     <section>
         <div class="schedule-container">
             <h2>DAY 4</h2>
             <p>Set the Plan of Day 4</p>
-            <!-- 업무항목 추가 버튼 -->
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(4)">+</button>
             <!-- 업무항목 목록 -->
-            <ul id="taskList" class="task-list"></ul>
+            <ul id="taskList4" class="task-list">
+
+            </ul>
         </div>
     </section>
     <section>
         <div class="schedule-container">
             <h2>DAY 5</h2>
             <p>Set the Plan of Day 5</p>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
-            <!-- 업무항목 목록 -->
-            <ul id="taskList" class="task-list"></ul>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(5)">+</button>
+            <ul id="taskList5" class="task-list"></ul>
         </div>
     </section>
     <section>
         <div class="schedule-container">
             <h2>DAY 6</h2>
             <p>Set the Plan of Day 6</p>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(6)">+</button>
             <!-- 업무항목 목록 -->
-            <ul id="taskList" class="task-list"></ul>
+            <ul id="taskList6" class="task-list">
+
+            </ul>
         </div>
     </section>
     <section>
         <div class="schedule-container">
             <h2>DAY 7</h2>
             <p>Set the Plan of Day 7</p>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">+</button>
-            <!-- 업무항목 목록 -->
-            <ul id="taskList" class="task-list"></ul>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(7)">+</button>
+            <ul id="taskList7" class="task-list"></ul>
         </div>
     </section>
-
-
 
     <!-- 모달 창 -->
     <div class="modal" id="addTaskModal">
@@ -164,73 +180,22 @@
                             <input type="text" class="form-control" id="subject" required>
                         </div>
                         <div class="form-group">
-                            <label for="plannedTime">목표 공부 시간:</label>
+                            <label for="plannedTime">목표 시간(분)</label>
                             <input type="text" class="form-control" id="plannedTime" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="plannedTime">목표 공부 분:</label>
+                            <label for="plannedTime">목표 시간(분)</label>
                             <input type="text" class="form-control" id="plannedm" required>
                         </div>
-                        <button type="button" class="btn btn-primary" onclick="submitForm()">추가</button>
+                        <button type="button" class="btn btn-primary" id="submitButton"
+                            onclick="submitForm()">추가</button>
 
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#addTaskModal').on('show.bs.modal', function () {
-                // Clear form fields when the modal is displayed
-                document.getElementById('addTaskForm').reset();
-                taskToEdit = null;
-            });
-
-        });
-        function submitForm() {
-            // 사용자로부터 과목명과 목표 공부 시간 입력 받기
-            var subject = document.getElementById('subject').value;
-            var plannedTime = document.getElementById('plannedTime').value;
-            var plannedm = document.getElementById('plannedm').value;
-            // 입력된 값이 숫자인지 확인
-            if (isNaN(plannedTime)) {
-                alert('목표 공부 시간은 숫자로 입력해주세요.');
-                return;
-            }
-
-            // 업무항목 목록에 새로운 항목 추가
-            var taskList = document.getElementById('taskList');
-            var taskItem = document.createElement('li');
-            taskItem.className = 'task-item';
-            taskItem.innerHTML = `
-                <strong>${subject}</strong> - Planned Time: ${plannedTime} hours ${plannedm} minutes
-                <button class="btn btn-fix" onclick="fixForm(this)">수정</button>
-                <button class="btn btn-danger" onclick="removeTask(this)">삭제</button>`;
-            taskList.appendChild(taskItem);
-
-            // 모달 창 닫기
-            $('#addTaskModal').modal('hide');
-        }
-
-        function fixForm(button) {
-        }
-
-        function updateTask() {
-        }
-
-        function removeTask(button) {
-            // 부모 엘리먼트인 task-item을 찾아서 삭제
-            var taskItem = button.parentElement;
-            taskItem.remove();
-        }
-    </script>
 </body>
 
 </html>
