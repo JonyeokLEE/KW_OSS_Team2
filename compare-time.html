@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Compare Time</title>
+    <link rel="stylesheet" href="compare-time.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="main.js"></script>
+    <script src="setPlan.html"></script>
+
+    <style>
+        h3{
+
+            padding-bottom: 20px;
+
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+    <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ml-auto">
+                        <a class="nav-link" href="login.html">Go to Login Page</a>
+                        <a class="nav-link" href="main.html">Go to Main Page</a>
+                    </div>
+        </nav>
+    <!--한 주에 달성한 To Do List 수 측정-->
+    <h3>To Do List 달성량</h3>
+
+    <div class="list-graph-form">                               
+        <div class="list-graph">
+          <div class="list-bar day1" style="width:5%;">
+            <dl class="desc">
+              <dt>DAY1</dt>
+              <dd><em>3</em>개</dd>
+            </dl>
+          </div>
+          <div class="list-bar day2" style="width:7%">
+            <dl class="desc">
+              <dt>DAY2</dt>
+              <dd><em>5</em>개</dd>
+            </dl>
+          </div>
+          <div class="list-bar day3" style="width:7%">
+            <dl class="desc">
+              <dt>DAY3</dt>
+              <dd><em>5</em>개</dd>
+            </dl>
+          </div>
+          <div class="list-bar day4" style="width:7%">
+            <dl class="desc">
+              <dt>DAY4</dt>
+              <dd><em>5</em>개</dd>
+            </dl>
+          </div>
+          <div class="list-bar day5" style="width:7%">
+            <dl class="desc">
+              <dt>DAY5</dt>
+              <dd><em>5</em>개</dd>
+            </dl>
+          </div>
+          <div class="list-bar day6" style="width:7%">
+            <dl class="desc">
+              <dt>DAY6</dt>
+              <dd><em>5</em>개</dd>
+            </dl>
+          </div>
+          <div class="list-bar day7" style="width:7%">
+            <dl class="desc">
+              <dt>DAY7</dt>
+              <dd><em>5</em>개</dd>
+            </dl>
+          </div>
+          <!--총 목표량 - 달성량 -->
+          <div class="list-bar rest" style="width:10%">
+            <dl class="desc">
+              <dt>the rest</dt>
+              <dd><em>6</em>개</dd>
+            </dl>
+          </div>
+
+            <!-- 위치시킬 값에 따라 left 값 조정 -->
+        <dl class="fixed_data" style="left:75%;">
+            <div class="item">
+                <dt>총 달성량</dt>
+                <dd><em>33</em>개</dd>
+            </div>
+            <div class="item">
+                <dt>목표량</dt>
+                <dd><em>39</em>개</dd>
+            </div>
+        </dl>
+    </div>
+
+    <!--한 주에 달성한 학습 시간 측정-->
+    <h3>학습 시간 달성량</h3>
+    <div class="time-graph-form">                               
+        <div class="time-graph">
+          <div class="time-bar day1" style="width:5%;">
+            <dl class="desc">
+              <dt>DAY1</dt>
+              <dd><em>3</em>분</dd>
+            </dl>
+          </div>
+          <div class="time-bar day2" style="width:7%">
+            <dl class="desc">
+              <dt>DAY2</dt>
+              <dd><em>5</em>분</dd>
+            </dl>
+          </div>
+          <div class="time-bar day3" style="width:7%">
+            <dl class="desc">
+              <dt>DAY3</dt>
+              <dd><em>5</em>분</dd>
+            </dl>
+          </div>
+          <div class="time-bar day4" style="width:7%">
+            <dl class="desc">
+              <dt>DAY4</dt>
+              <dd><em>5</em>분</dd>
+            </dl>
+          </div>
+          <div class="time-bar day5" style="width:7%">
+            <dl class="desc">
+              <dt>DAY5</dt>
+              <dd><em>5</em>분</dd>
+            </dl>
+          </div>
+          <div class="time-bar day6" style="width:7%">
+            <dl class="desc">
+              <dt>DAY6</dt>
+              <dd><em>5</em>분</dd>
+            </dl>
+          </div>
+          <div class="time-bar day7" style="width:7%">
+            <dl class="desc">
+              <dt>DAY7</dt>
+              <dd><em>5</em>분</dd>
+            </dl>
+          </div>
+          <!--총 목표시간 - 달성시간 -->
+          <div class="time-bar rest" style="width:10%">
+            <dl class="desc">
+              <dt>the rest</dt>
+              <dd><em>6</em>분</dd>
+            </dl>
+          </div>
+
+            <!-- 위치시킬 값에 따라 left 값 조정 -->
+        <dl class="fixed_data" style="left:75%;">
+            <div class="item">
+                <dt>총 달성시간</dt>
+                <dd><em>33</em>분</dd>
+            </div>
+            <div class="item">
+                <dt>목표시간</dt>
+                <dd><em>39</em>분</dd>
+            </div>
+        </dl>
+    </div>
+
+
+          

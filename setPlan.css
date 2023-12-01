@@ -1,6 +1,4 @@
-/*구글 폰트 사용*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,500&display=swap');
-
 
 *{
     margin: 0;
@@ -9,10 +7,13 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.text1{
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 32px;
-    font-weight: bold;
-    
+.schedule-container{
+
+    width: 900px;
+    background: #f1f1f1;
+    height: 300x;
+    padding: 80px 40px;
+    border-style: none;
+    border-radius: 10px;
+
 }
