@@ -120,7 +120,7 @@
         function loadTasks() {
             selectedDay = document.getElementById('dateDropdown').value;
             tasksObject = JSON.parse(localStorage.getItem("tasks"));
-
+            
             // Display tasks for the selected day
             var taskList = document.getElementById('taskList');
             taskList.innerHTML = '';
@@ -155,7 +155,6 @@
                 return;
             }
 
-            loadTasks();  // Load tasks when the timer starts to ensure the selected day is correct
             timerInterval = setInterval(updateTimer, 1000);
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = false;
@@ -207,7 +206,7 @@
                 return;
             }
 
-            var elapsedTime = hours * 60 + minutes;  // Convert hours to minutes and add to the existing minutes
+            var elapsedTime = hours * 3600 + minutes * 60 + seconds; // Convert hours to minutes and add to the existing minutes
             // Find the selected subject in tasksObject and update the elapsed time
             var taskIndex = tasksObject[selectedDay].findIndex(function (task) {
                 return task.subject === selectedSubject;
@@ -217,7 +216,7 @@
 
             // Save the updated tasksObject to localStorage
             localStorage.setItem("tasks", JSON.stringify(tasksObject));
-
+            console.log(tasksObject);
             alert('Elapsed time saved successfully!');
         }
     </script>
