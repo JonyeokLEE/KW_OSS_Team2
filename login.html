@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>학습 관리 프로그램</title>
+    <title>Study Management Program</title>
+    <link rel="stylesheet" href="LoginForm.css">
+
     <style>
         body {
             display: flex;
@@ -13,6 +15,7 @@
             height: 100vh;
             margin: 0;
             flex-direction: column;
+            background-image: linear-gradient(120deg, #380036, #0CBABA);
             /* 추가: 세로 방향으로 정렬 */
         }
 
@@ -47,30 +50,29 @@
             margin-bottom: 10px;
         }
     </style>
+    <script src="main.js"></script>
 </head>
 
 <body>
-    <h1>학습 관리 프로그램</h1>
-    <div class="input-container">
-        <label for="userId">User ID:</label>
-        <input type="text" id="userId" name="userId">
-    </div>
+
+    <div style="margin-bottom: 15%;"></div>
+
+    <form class="LoginForm" onsubmit="event.preventDefault(); goToNextPage();">
 
 
-    <button onclick="goToNextPage()">Log-In</button>
+        <h1>Study Management Program</h1>
+        <div class="input-container">
+            <label for="userId">User ID</label>
+            <input type="text" id="userId" name="userId">
+        </div>
 
-    <script>
-        function goToNextPage() {
-            var userId = document.getElementById('userId').value;
+        <button onclick="goToNextPage()">Log-In</button>
 
-            // 아이디가 비어있으면 다음 페이지로 이동하지 않음
-            if (userId.trim() === "") {
-                alert("Please Enter your ID");
-            } else {
-                window.location.href = 'setPlan.html?userId=' + userId;
-            }
-        }
-    </script>
+        </div>
+
+    </form>
+    <div style="margin-bottom: 15%;"></div>
+
 </body>
 
 </html>
