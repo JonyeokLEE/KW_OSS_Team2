@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Time Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,6 +16,7 @@
             margin: 0;
             flex-direction: column;
         }
+        
 
         h1 {
             text-align: center;
@@ -72,10 +74,40 @@
             background-color: #ffc107;
             color: black;
         }
+        nav {
+            background-color: black;
+            margin-bottom: 20px;
+        }
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
     </style>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ 
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-link" href="login.html">Go to Login Page</a>
+                <a class="nav-link" href="main.html">Go to Main Page</a>
+                <a class="nav-link" href="setPlan.html">Go to setPlan Page</a>
+            
+            </div>
+        </div>
+    </div>
+</nav>
     <h1>Study Time Tracker</h1>
 
     <!-- Add date dropdown menu -->
