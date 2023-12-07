@@ -9,12 +9,27 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+/*navbar 폰트 설정*/
+.navbar-brand{
+    color: white;
+}
+.nav-link{
+    color: white;
+}
+
 .LoginForm{
-    width: 360px;
+    width: 500px;
     background: #f1f1f1;
     height: 580px;
     padding: 80px 40px;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    margin-top:5%;
+    
 }
 .LoginForm h1{
     text-align: center;
@@ -43,7 +58,7 @@
     display: block;
     width: 100%;
     height: 50px;
-    background: linear-gradient(120deg, #380036, #0CBABA);
+    background: rgb(7, 7, 134);
     color: #fff;
     border: none;
     outline: none;

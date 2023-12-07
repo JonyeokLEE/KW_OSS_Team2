@@ -6,19 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Management Program</title>
     <link rel="stylesheet" href="LoginForm.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-            background-image: linear-gradient(120deg, #380036, #0CBABA);
-            /* 추가: 세로 방향으로 정렬 */
+            font-family: Arial, sans-serif;
+            background-image: white;
         }
 
+        nav {
+            background-color: rgb(7, 7, 134);
+            margin-bottom: 20px;
+        }
         /* Additional styles for better appearance */
         h1 {
             text-align: center;
@@ -51,11 +50,34 @@
         }
     </style>
     <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
-    <div style="margin-bottom: 15%;"></div>
+    <!-- navigation bar --> 
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">KW-SMP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link" href="main.html">Go to Main Page</a>
+                    <a class="nav-link" href="setPlan.html">Go to SetPlan Page</a>
+                    <a class="nav-link" href="TimeRecord.html">Go to TimeRecord Page</a>
+                    <a class="nav-link" href="compare-time.html">Go to CompareTime Page</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+
+    <div style="margin-bottom: 5%;"></div>
 
     <form class="LoginForm" onsubmit="event.preventDefault(); goToNextPage();">
 
