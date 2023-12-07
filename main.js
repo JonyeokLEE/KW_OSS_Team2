@@ -49,7 +49,11 @@ function saveTasks() {
     }
 
     // 저장된 정보를 콘솔에 출력합니다.
+<<<<<<< HEAD
     console.log(tasks);
+=======
+    
+>>>>>>> c5b482519a51b43b26c6d0f75e2066f107ecef6b
     var buttons = document.getElementsByTagName('button');
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].disabled = true;
