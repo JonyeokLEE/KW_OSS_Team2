@@ -9,11 +9,25 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+/*navbar 폰트 설정*/
+.navbar-brand{
+  color: white;
+}
+.nav-link{
+  color: white;
+}
+
+
 
 
 .list-graph-form{
     position:relative;
     padding-bottom:20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    margin-top:0%;
     /*그래프 전체 영역 디자인*/
     .list-graph{
       position:relative;
@@ -153,6 +167,11 @@
   .time-graph-form{
     position:relative;
     padding-bottom:20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    margin-top:0%;
     /*그래프 전체 영역 디자인*/
     .time-graph{
       position:relative;

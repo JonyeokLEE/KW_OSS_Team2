@@ -36,22 +36,25 @@ function saveTasks() {
             var subject = taskItem.getElementsByTagName('strong')[0].innerText;
             var plannedTime = taskItem.innerText.split('Planned Time: ')[1].split(' hours')[0];
             var plannedm = taskItem.innerText.split(' hours ')[1].split(' minutes')[0];
+            var plannedTimeSum = plannedTime*3600+plannedm*60;
 
             // 정보를 저장합니다.
             tasks['day' + currentDay].push({
                 subject: subject,
                 plannedTime: plannedTime,
-                plannedm: plannedm
+                plannedm: plannedm,
+                plannedTimeSum:plannedTimeSum
             });
         }
     }
 
     // 저장된 정보를 콘솔에 출력합니다.
-    console.log(tasks);
+    
     var buttons = document.getElementsByTagName('button');
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].disabled = true;
     }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 

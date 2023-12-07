@@ -9,27 +9,29 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.text1{
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 32px;
-    font-weight: bold;
+/*navbar 폰트 설정*/
+.navbar-brand{
+    color: white;
+}
+.nav-link{
+    color: white;
 }
 
-.text2{
-    text-align:center;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
 
- .Time-record-form{
-    width: 360px;
+.Time-record-form{
+    width: 600px;
     background: #f1f1f1;
-    height: 200px;
+    height: 500px;
     padding: 80px 40px;
     border-radius: 10px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

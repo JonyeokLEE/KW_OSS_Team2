@@ -7,13 +7,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.schedule-container{
-
-    width: 900px;
-    background: #f1f1f1;
-    height: 300x;
-    padding: 80px 40px;
-    border-style: none;
-    border-radius: 10px;
-
+/*navbar 폰트 설정*/
+.navbar-brand{
+    color: white;
+}
+.nav-link{
+    color: white;
 }
