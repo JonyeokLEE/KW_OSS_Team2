@@ -4,45 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Set Plan</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        nav {
-            background-color: #f8f9fa;
-            margin-bottom: 20px;
-        }
-    </style>
-
-
+    <title>Main Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-link" href="login.html">Go to Login Page</a>
-                    <a class="nav-link" href="main.html">Go to Main Page</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <h1>Main Page</h1>
 
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <canvas id="myChart" width="400" height="200"></canvas>
 
     <script>
+        // 로컬 스토리지에서 "tasks" 키에 해당하는 데이터 가져오기
+        var tasksData = localStorage.getItem("tasks");
+
+        // 가져온 데이터를 JavaScript 객체로 변환
+        var tasksObject = JSON.parse(tasksData);
+
+        // 각 과목당 시간과 분 데이터 추출
+        var subjects = Object.keys(tasksObject);
+        var times = subjects.map(function (subject) {
+            var totalMinutes = tasksObject[subject].reduce(function (acc, task) {
+                return acc + parseInt(task.plannedTime) * 60 + parseInt(task.plannedm);
+            }, 0);
+            return totalMinutes;
+        });
+
+        // Chart.js를 사용하여 그래프 생성
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: subjects,
+                datasets: [{
+                    label: 'Study Time per Subject',
+                    data: times,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     </script>
 </body>
 
