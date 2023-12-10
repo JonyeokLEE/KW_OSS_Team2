@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h1>Main Page</h1>
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <script>
+        // 로컬 스토리지에서 "tasksObject" 키에 해당하는 데이터 가져오기
+        var tasksObjectData = localStorage.getItem("tasks");
+        console.log(tasksObjectData);
+        // 가져온 데이터를 JavaScript 객체로 변환
+        var tasksObject = JSON.parse(tasksObjectData);
+
+        // 날짜별 plannedTimeSum과 elapsedTime 추출
+        var dates = Object.keys(tasksObject);
+        var plannedTimeSums = dates.map(function (date) {
+            var plannedTimeSum = tasksObject[date].reduce(function (acc, task) {
+                return acc + parseInt(task.plannedTime) * 60 + parseInt(task.plannedm);
+            }, 0);
+            return plannedTimeSum;
+        });
+
+        var elapsedTimes = dates.map(function (date) {
+            var elapsedTimesSum = tasksObject[date].reduce(function (acc, task) {
+                return acc + (task.elapsedTime || 0);
+            }, 0);
+            return elapsedTimesSum;
+        });
+
+        // Chart.js를 사용하여 그래프 생성
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Planned Time per Date',
+                    data: plannedTimeSums,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Elapsed Time per Date',
+                    data: elapsedTimes,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

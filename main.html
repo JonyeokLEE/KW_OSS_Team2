@@ -2,56 +2,162 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Set Plan</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main-form.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: white;
+    }
+
+    nav {
+      background-color: none;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script src="setPlan.js"></script>
+
 </head>
 
 <body>
-    <h1>Main Page</h1>
 
-    <canvas id="myChart" width="400" height="200"></canvas>
+  <!--main page image -->
+  <div class="main_area">
 
-    <script>
-        // 로컬 스토리지에서 "tasks" 키에 해당하는 데이터 가져오기
-        var tasksData = localStorage.getItem("tasks");
+    <div class="main_box">
+      <div class="main_img_box">
+        <img src="image/MainImage.png" alt="">
+      </div>
+    </div>
 
-        // 가져온 데이터를 JavaScript 객체로 변환
-        var tasksObject = JSON.parse(tasksData);
+    <!-- navigation bar -->
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">KW-SMP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a class="nav-link" href="login.html">LOG-OUT</a>
+            <a class="nav-link" href="setPlan.html">SetPlan</a>
+            <a class="nav-link" href="TimeRecord.html">RecordTIme</a>
+            <a class="nav-link" href="compare-time.html">CompareTime</a>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-        // 각 과목당 시간과 분 데이터 추출
-        var subjects = Object.keys(tasksObject);
-        var times = subjects.map(function (subject) {
-            var totalMinutes = tasksObject[subject].reduce(function (acc, task) {
-                return acc + parseInt(task.plannedTime) * 60 + parseInt(task.plannedm);
-            }, 0);
-            return totalMinutes;
-        });
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Set <br>
+                      Plan
+                    </h1>
+                    <p>
+                      set your plan!
+                    </p>
+                    <div class="btn-box">
+                      <a href="setPlan.html" class="btn1">
+                        Click!
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="image/SetPlan.png" alt="SetPlan">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Time <br>
+                      Record
+                    </h1>
+                    <p>
+                      Check your study time!
+                    </p>
+                    <div class="btn-box">
+                      <a href="TimeRecord.html" class="btn1">
+                        Click!
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="image/TimeRecord.png" alt="TimeRecord">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Compare <br>
+                      Time
+                    </h1>
+                    <p>
+                      Check your plan and study time with graph!
+                    </p>
+                    <div class="btn-box">
+                      <a href="compare-time.html" class="btn1">
+                        Click!
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="image/CompareTime.png" alt="CompareTime">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ol class="carousel-indicators">
+          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+          <li data-target="#customCarousel1" data-slide-to="1"></li>
+          <li data-target="#customCarousel1" data-slide-to="2"></li>
+        </ol>
+      </div>
 
-        // Chart.js를 사용하여 그래프 생성
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: subjects,
-                datasets: [{
-                    label: 'Study Time per Subject',
-                    data: times,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
+    </section>
+    <!-- end slider section -->
+  </div>
+
 </body>
 
 </html>

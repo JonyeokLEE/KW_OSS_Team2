@@ -6,11 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set Plan</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="setPlan.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
         section {
             margin-bottom: 20px;
         }
@@ -57,14 +54,14 @@
 
         nav {
             background-color: black;
+            background-color: rgb(9, 9, 129);
             margin-bottom: 20px;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <script src="main.js"></script>
+    <script src="setPlan.js"></script>
     <script src="TimeRecord.js"></script>
 </head>
 
@@ -72,23 +69,21 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">KW-SMP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls=5"navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-link" href="login.html">Go to Login Page</a>
-                    <a class="nav-link" href="main.html">Go to Main Page</a>
-                    <a class="nav-link" href="TimeRecord.html">Go to TimeRecord Page</a>
-                    
+                    <a class="nav-link" href="login.html">LOG-OUT</a>
+                    <a class="nav-link" href="main.html">MainPage</a>
                 </div>
             </div>
-            <!-- 저장 버튼 -->
-            <button class="btn btn-primary" onclick="saveTasks()">저장</button>
         </div>
+        <button class="btn btn-primary" onclick="saveTasks()">SAVE</button>
     </nav>
+
     <section>
         <div class="schedule-container">
             <h2>DAY 1</h2>
@@ -181,7 +176,7 @@
                             <input type="text" class="form-control" id="subject" required>
                         </div>
                         <div class="form-group">
-                            <label for="plannedTime">목표 시간(분)</label>
+                            <label for="plannedTime">목표 시간(시간)</label>
                             <input type="text" class="form-control" id="plannedTime" required>
                         </div>
 
