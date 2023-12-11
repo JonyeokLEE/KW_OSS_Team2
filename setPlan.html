@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Plan</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="setPlan.css">
+    <style>
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            padding-bottom: 5px;
+        }
+
+        .schedule-container {
+            border: 2px solid #333;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task-item strong {
+            font-size: 1.2em;
+        }
+
+        .task-item button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        nav {
+            background-color: black;
+            background-color: rgb(9, 9, 129);
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="setPlan.js"></script>
+    <script src="TimeRecord.js"></script>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">KW-SMP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls=5"navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link" href="login.html">LOG-OUT</a>
+                    <a class="nav-link" href="main.html">MainPage</a>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" onclick="saveTasks()">SAVE</button>
+    </nav>
+
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 1</h2>
+            <p>Set the Plan of Day 1</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(1)">+</button>
+            <ul id="taskList1" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 2</h2>
+            <p>Set the Plan of Day 2</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(2)">+</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList2" class="task-list">
+
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 3</h2>
+            <p>Set the Plan of Day 3</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(3)">+</button>
+            <ul id="taskList3" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 4</h2>
+            <p>Set the Plan of Day 4</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(4)">+</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList4" class="task-list">
+
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 5</h2>
+            <p>Set the Plan of Day 5</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(5)">+</button>
+            <ul id="taskList5" class="task-list"></ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 6</h2>
+            <p>Set the Plan of Day 6</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(6)">+</button>
+            <!-- 업무항목 목록 -->
+            <ul id="taskList6" class="task-list">
+
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div class="schedule-container">
+            <h2>DAY 7</h2>
+            <p>Set the Plan of Day 7</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal"
+                onclick="setCurrentDay(7)">+</button>
+            <ul id="taskList7" class="task-list"></ul>
+        </div>
+    </section>
+
+    <!-- 모달 창 -->
+    <div class="modal" id="addTaskModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 모달 헤더 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">업무항목 추가</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 모달 본문 -->
+                <div class="modal-body">
+                    <form id="addTaskForm">
+                        <div class="form-group">
+                            <label for="subject">과목명:</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="plannedTime">목표 시간(분)</label>
+                            <input type="text" class="form-control" id="plannedTime" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="plannedTime">목표 시간(분)</label>
+                            <input type="text" class="form-control" id="plannedm" required>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="submitButton"
+                            onclick="submitForm()">추가</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
