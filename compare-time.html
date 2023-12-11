@@ -3,223 +3,119 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Compare Time</title>
-    <link rel="stylesheet" href="compare-time.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-
+    <link rel="stylesheet" href="compare-time.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <script src="main.js"></script>
-    <script src="setPlan.html"></script>
 
     <style>
         body{
-
-        }
-        h3{
-            text-align: center;
-            padding-bottom: 5px;
-            margin-top: 100px;
-            
-
+            font-family: 'Montserrat', sans-serif;
         }
         nav {
-            background-color: rgb(7, 7, 134);
+            background-color: rgb(9, 9, 129);
+            margin-bottom: 20px;
         }
     </style>
-
 </head>
 
-
-
 <body>
-    <!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">KW-SMP</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav ml-auto">
-                        <a class="nav-link" href="login.html">Go to Login Page</a>
-                        <a class="nav-link" href="main.html">Go to Main Page</a>
-                        <a class="nav-link" href="setPlan.html">Go to SetPlan Page</a>
-                        <a class="nav-link" href="TimeRecord.html">Go to TimeRecord Page</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">KW-SMP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link" href="login.html">LOG-OUT</a>
+                    <a class="nav-link" href="setPlan.html">SetPlan</a>
+                    <a class="nav-link" href="TimeRecord.html">RecordTime</a>
+                    <a class="nav-link" href="main.html">MainPage</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-                    </div>
-        </nav>
-    <!--한 주에 달성한 To Do List 수 측정
-    function processArray(arr) {
-            // 배열 내용을 순회하면서 출력
-            for (var i = 0; i < arr.length; i++) {
-                console.log(arr[i]);
+    <h1><span>Check</span> your study time! </h1>
+
+    <div class="box">
+        <div class="img-box">
+          <img src="image/compare-time.png" alt="">
+        </div>
+        <div class="detail-box">
+          <h5>
+            Study Time Graph
+          </h5>
+          <p>
+           한 주 동안 목표했던 학습 시간과 실제 달성한 학습 시간을 그래프를 통해 점검해봅시다!
+          </p>
+        </div>
+      </div>
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <script>
+        // 로컬 스토리지에서 "tasksObject" 키에 해당하는 데이터 가져오기
+        var tasksObjectData = localStorage.getItem("tasks");
+        console.log(tasksObjectData);
+        // 가져온 데이터를 JavaScript 객체로 변환
+        var tasksObject = JSON.parse(tasksObjectData);
+
+        // 날짜별 plannedTimeSum과 elapsedTime 추출
+        var dates = Object.keys(tasksObject);
+        var plannedTimeSums = dates.map(function (date) {
+            var plannedTimeSum = tasksObject[date].reduce(function (acc, task) {
+                return acc + parseInt(task.plannedTime) * 60 + parseInt(task.plannedm);
+            }, 0);
+            return plannedTimeSum;
+        });
+
+        var elapsedTimes = dates.map(function (date) {
+            var elapsedTimesSum = tasksObject[date].reduce(function (acc, task) {
+                return acc + (task.elapsedTime || 0);
+            }, 0);
+            return elapsedTimesSum;
+        });
+
+        // Chart.js를 사용하여 그래프 생성
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Planned Time',
+                    data: plannedTimeSums,
+                    backgroundColor: 'rgba(0, 216, 255, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'achieved time',
+                    data: elapsedTimes,
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                mmaintainAspectRatio: false, // 가로 세로 비율 유지 여부 (false로 설정하면 가로 세로 비율을 조절할 수 있음)
+                responsive: true, //차트 크기를 반응형으로 설정 (창 크기에 따라 조절 가능)
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
-        }
-    -->
-    <h3>To Do List 달성량</h3>
+        });
+    </script>
+</body>
 
-    <div class="list-graph-form">                               
-        <div class="list-graph">
-
-            <div class="list-bar day1" style="width:5%;">
-                <dl class="desc">
-                    <dt>DAY1</dt>
-                        <dd>
-                            <div id="tasksDisplay"></div>
-                            <!-- tasks 객체를 사용하는 JavaScript 코드 -->
-                            <script>
-                                // tasks 객체를 표시하는 함수
-                                function displayTasks() {
-                                    // tasksDisplay라는 ID를 가진 div 요소를 가져옴
-                                    var displayArea = document.getElementById('tasksDisplay');
-                        
-                                    // 날짜를 가져와서 표시
-                                    var day = Object.keys(tasks)[0]; // 첫 번째 날짜를 가져옴
-                        
-                                    // 해당 날짜의 작업 배열을 가져와서 표시
-                                    var tasksForDay = tasks[day1];
-                                    var tasksString = tasksForDay.length > 0 ? tasksForDay.join(', ') : 'No tasks';
-                        
-                                    // HTML에 작업 표시
-                                    displayArea.innerHTML += '<p><strong>' + day1[1] + ':</strong> ' + tasksString + '</p>';
-                                }
-                        
-                                // 함수 호출하여 작업 표시
-                                displayTasks();
-                            </script>
-
-                        </dd>
-                </dl>
-            </div>
-            <div class="list-bar day2" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY2</dt>
-                        <dd><em>5</em>개</dd>
-
-            </dl>
-            </div>
-            <div class="list-bar day3" style="width:7%">
-                    <dl class="desc">
-                        <dt>DAY3</dt>
-                            <dd><em>5</em>개</dd>
-                    </dl>
-            </div>
-            <div class="list-bar day4" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY4</dt>
-                        <dd><em>5</em>개</dd>
-                </dl>
-            </div>
-            <div class="list-bar day5" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY5</dt>
-                        <dd><em>5</em>개</dd>
-                </dl>
-            </div>
-            <div class="list-bar day6" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY6</dt>
-                        <dd><em>5</em>개</dd>
-            </dl>
-            </div>
-            <div class="list-bar day7" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY7</dt>
-                        <dd><em>5</em>개</dd>
-            </dl>
-            </div>
-          <!--총 목표량 - 달성량 -->
-          <div class="list-bar rest" style="width:10%">
-            <dl class="desc">
-              <dt>the rest</dt>
-              <dd><em>6</em>개</dd>
-            </dl>
-          </div>
-
-        <!-- 위치시킬 값에 따라 left 값 조정 -->
-        <dl class="fixed_data" style="left:75%;">
-            <div class="item">
-                <dt>총 달성량</dt>
-                <dd><em>33</em>개</dd>
-            </div>
-            <div class="item">
-                <dt>목표량</dt>
-                <dd><em>39</em>개</dd>
-            </div>
-        </dl>
-    </div>
-
-    <!--한 주에 달성한 학습 시간 측정-->
-    <h3>학습 시간 달성량</h3>
-    <div class="time-graph-form">                               
-        <div class="time-graph">
-            <div class="time-bar day1" style="width:5%;">
-                <dl class="desc">
-                    <dt>DAY1</dt>
-                        <dd><em>3</em>분</dd>
-                </dl>
-            </div>
-            <div class="time-bar day2" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY2</dt>
-                        <dd><em>5</em>분</dd>
-                </dl>
-            </div>
-            <div class="time-bar day3" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY3</dt>
-                        <dd><em>5</em>분</dd>
-                </dl>
-            </div>
-            <div class="time-bar day4" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY4</dt>
-                        <dd><em>5</em>분</dd>
-                </dl>
-            </div>
-            <div class="time-bar day5" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY5</dt>
-                        <dd><em>5</em>분</dd>
-                </dl>
-            </div>
-            <div class="time-bar day6" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY6</dt>
-                        <dd><em>5</em>분</dd>
-                </dl>
-            </div>
-            <div class="time-bar day7" style="width:7%">
-                <dl class="desc">
-                    <dt>DAY7</dt>
-                        <dd><em>5</em>분</dd>
-                </dl>
-            </div>
-            <!--총 목표시간 - 달성시간 -->
-            <div class="time-bar rest" style="width:10%">
-                <dl class="desc">
-                    <dt>the rest</dt>
-                        <dd><em>6</em>분</dd>
-                </dl>
-          </div>
-
-        <!-- 위치시킬 값에 따라 left 값 조정 -->
-        <dl class="fixed_data" style="left:75%;">
-            <div class="item">
-                <dt>총 달성시간</dt>
-                <dd><em>33</em>분</dd>
-            </div>
-            <div class="item">
-                <dt>목표시간</dt>
-                <dd><em>39</em>분</dd>
-            </div>
-        </dl>
-    </div>
-
-
-          
+</html>

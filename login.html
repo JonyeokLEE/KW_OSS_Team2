@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Management Program</title>
     <link rel="stylesheet" href="LoginForm.css">
-<<<<<<< HEAD
-
+    <link r5el="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         body {
             display: flex;
@@ -16,22 +15,9 @@
             height: 100vh;
             margin: 0;
             flex-direction: column;
-            background-image: linear-gradient(120deg, #380036, #0CBABA);
-            /* 추가: 세로 방향으로 정렬 */
-=======
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: white;
->>>>>>> c5b482519a51b43b26c6d0f75e2066f107ecef6b
+            background: linear-gradient(120deg, #380036, #0CBABA);
         }
 
-        nav {
-            background-color: rgb(7, 7, 134);
-            margin-bottom: 20px;
-        }
         /* Additional styles for better appearance */
         h1 {
             text-align: center;
@@ -63,55 +49,39 @@
             margin-bottom: 10px;
         }
     </style>
-    <script src="main.js"></script>
-<<<<<<< HEAD
-=======
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
->>>>>>> c5b482519a51b43b26c6d0f75e2066f107ecef6b
+    <script>
+        function goToNextPage() {
+            var userId = document.getElementById('userId').value;
+
+            // 아이디가 비어있으면 다음 페이지로 이동하지 않음
+            if (userId.trim() === "") {
+                alert("Please Enter your ID");
+            } else {
+                window.location.href = 'main.html?userId=' + userId;
+            }
+        }
+    </script>
 </head>
 
 <body>
 
-<<<<<<< HEAD
-    <div style="margin-bottom: 15%;"></div>
-=======
-    <!-- navigation bar --> 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">KW-SMP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-link" href="main.html">Go to Main Page</a>
-                    <a class="nav-link" href="setPlan.html">Go to SetPlan Page</a>
-                    <a class="nav-link" href="TimeRecord.html">Go to TimeRecord Page</a>
-                    <a class="nav-link" href="compare-time.html">Go to CompareTime Page</a>
-                </div>
+    <div style="margin-top: 15%;">
+
+        <form class="LoginForm" onsubmit="event.preventDefault(); goToNextPage();">
+
+
+            <h1>Study Management Program</h1>
+            <div class="input-container">
+                <label for="userId">User ID</label>
+                <input type="text" id="userId" name="userId">
             </div>
-        </div>
-    </nav>
-    
 
-    <div style="margin-bottom: 5%;"></div>
->>>>>>> c5b482519a51b43b26c6d0f75e2066f107ecef6b
+            <button onclick="goToNextPage()">Log-In</button>
 
-    <form class="LoginForm" onsubmit="event.preventDefault(); goToNextPage();">
-
-
-        <h1>Study Management Program</h1>
-        <div class="input-container">
-            <label for="userId">User ID</label>
-            <input type="text" id="userId" name="userId">
-        </div>
-
-        <button onclick="goToNextPage()">Log-In</button>
-
-        </div>
+    </div>
 
     </form>
     <div style="margin-bottom: 15%;"></div>
