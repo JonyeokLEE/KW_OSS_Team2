@@ -1,5 +1,6 @@
 var time = 0;
 var currentDay = 1;
+var planned = false;
 
 function setCurrentDay(day) {
     currentDay = day;
